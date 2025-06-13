@@ -4,9 +4,11 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Leadership from "@/components/Leadership";
-import Services from "@/components/Services";
+// import Services from "@/components/Services";
+
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
+// import SplineViewer from "@/components/SplineViewer";
 
 const Index = () => {
   return (
@@ -17,8 +19,10 @@ const Index = () => {
       <Skills />
       <Projects />
       <Leadership />
-      <Services />
+      
+      {/* <Services /> */}
       <Contact />
+      {/* <SplineViewer/>/////////////////////////////////////////////////////////////////////////// */}
     </div>
   );
 };

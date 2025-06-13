@@ -1,20 +1,19 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Error",
@@ -28,31 +27,30 @@ const Contact = () => {
 
     try {
       const result = await emailjs.send(
-        'service_g5j4afc', // Service ID
-        'template_dyhawq6', // Template ID
+        "service_g5j4afc",
+        "template_dyhawq6",
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_email: 'yegotisaithanushkumar143@gmail.com'
+          to_email: "yegotisaithanushkumar143@gmail.com",
         },
-        'FxBxvAcsY4fwv5pKp' // Public Key
+        "FxBxvAcsY4fwv5pKp"
       );
 
-      console.log('Email sent successfully:', result);
-      
+      console.log("Email sent successfully:", result);
+
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
-      
+
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('Failed to send email:', error);
-      
+      console.error("Failed to send email:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact me directly.",
+        description: "Failed to send message. Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -60,10 +58,12 @@ const Contact = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -73,60 +73,91 @@ const Contact = () => {
         <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
           Let's Connect
         </h2>
-        
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-white">Get In Touch</h3>
-              <p className="text-gray-300 mb-8 leading-relaxed">
-                I'm always open to discussing new opportunities, innovative projects, 
-                or just having a conversation about technology and AI. Let's connect!
-              </p>
+            <h3 className="text-2xl font-semibold text-white">Reach Me</h3>
+            <p className="text-gray-300 leading-relaxed">
+              I'm always excited to collaborate or discuss innovative ideas.
+              Whether it's tech, AI, or just a good conversation—reach out!
+              <br />
+              <br />
+              You can also connect with me through these platforms:
+            </p>
+
+            {/* Social Media Boxes */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* GitHub */}
+              <a
+                href="https://github.com/Saithanushkumar143"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-black hover:to-white hover:text-black shadow-md hover:shadow-white/20"
+              >
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl">
+                  💻
+                </div>
+                <p className="text-white font-medium">GitHub</p>
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/sai-thanush-kumar-yegoti-58220b299/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-[#0072b1] hover:to-white hover:text-black shadow-md hover:shadow-blue-400/30"
+              >
+                <div className="w-12 h-12 bg-[#0072b1] rounded-full flex items-center justify-center text-white text-xl">
+                  🔗
+                </div>
+                <p className="text-white font-medium">LinkedIn</p>
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/saithanushkumar_143" // Replace this
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 hover:text-white shadow-md hover:shadow-pink-400/30"
+              >
+                <div className="w-12 h-12 bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white text-xl">
+                  📸
+                </div>
+                <p className="text-white font-medium">Instagram</p>
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:yegotisaithanushkumar143@gmail.com"
+                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-rose-500 hover:to-orange-400 hover:text-white shadow-md hover:shadow-red-400/30"
+              >
+                <div className="w-12 h-12 bg-red-500/70 rounded-full flex items-center justify-center text-white text-xl">
+                  📧
+                </div>
+                <p className="text-white font-medium">Email</p>
+              </a>
             </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-blue-400">📧</span>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Email</p>
-                  <a href="mailto:yegotisaithanushkumar143@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    yegotisaithanushkumar143@gmail.com
-                  </a>
-                </div>
+
+            {/* Location */}
+            <div className="flex items-center space-x-4 pt-6">
+              <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <span className="text-blue-400">📍</span>
               </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-blue-400">📱</span>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Phone</p>
-                  <a href="tel:+919182248301" className="text-gray-400 hover:text-blue-400 transition-colors">
-                    +91 9182248301
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-blue-400">📍</span>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Location</p>
-                  <p className="text-gray-400">Visakhapatnam, India</p>
-                </div>
+              <div>
+                <p className="text-white font-medium">Location</p>
+                <p className="text-gray-400">Visakhapatnam, India</p>
               </div>
             </div>
           </div>
-          
+
           {/* Contact Form */}
-          <div className="bg-slate-700/50 p-8 rounded-xl border border-slate-600/50">
+          <div className="bg-slate-700/50 p-8 rounded-xl border border-slate-600/50 hover:border-blue-400/50 transition-all duration-300 hover:shadow-[0_0_24px_4px_rgba(56,189,248,0.4)]">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-white font-medium mb-2">Name</label>
+                <label htmlFor="name" className="block text-white font-medium mb-2">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -139,9 +170,11 @@ const Contact = () => {
                   placeholder="Your Name"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block text-white font-medium mb-2">Email</label>
+                <label htmlFor="email" className="block text-white font-medium mb-2">
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -154,9 +187,11 @@ const Contact = () => {
                   placeholder="your@email.com"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="message" className="block text-white font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-white font-medium mb-2">
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -169,7 +204,7 @@ const Contact = () => {
                   placeholder="Your message..."
                 ></textarea>
               </div>
-              
+
               <button
                 type="submit"
                 disabled={isLoading}
@@ -180,7 +215,7 @@ const Contact = () => {
             </form>
           </div>
         </div>
-        
+
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-slate-700 text-center">
           <p className="text-gray-400 text-sm">

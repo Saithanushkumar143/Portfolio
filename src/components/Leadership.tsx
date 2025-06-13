@@ -1,4 +1,3 @@
-
 const Leadership = () => {
   const achievements = [
     {
@@ -38,7 +37,8 @@ const Leadership = () => {
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-400 rounded-full border-4 border-slate-900"></div>
                 
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                  <div className="bg-slate-700/50 p-6 rounded-xl border border-slate-600/50 hover:border-blue-400/50 transition-all duration-300">
+                  <div className="bg-slate-700/50 p-6 rounded-xl border border-slate-600/50 transition-all duration-300
+    hover:border-blue-400 hover:shadow-[0_0_32px_8px_rgba(59,130,246,0.7)] hover:shadow-blue-400/70">
                     <div className="flex items-center mb-3">
                       <span className="text-2xl mr-3">{achievement.icon}</span>
                       <div>
@@ -62,3 +62,4 @@ const Leadership = () => {
 };
 
 export default Leadership;
+

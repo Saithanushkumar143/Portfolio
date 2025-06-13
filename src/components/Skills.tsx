@@ -3,13 +3,13 @@ import React, { useEffect, useRef } from "react";
 const Skills = () => {
   const skills = [
     { name: "Python", level: 75, color: "from-yellow-400 to-yellow-600" },
-    { name: "C Programming", level: 70, color: "from-blue-400 to-blue-600" },
+    { name: "C Programming", level: 60, color: "from-blue-400 to-blue-600" },
     { name: "HTML & CSS", level: 85, color: "from-orange-400 to-red-600" },
     { name: "Prompt Engineering", level: 90, color: "from-purple-400 to-pink-600" },
-    { name: "Machine Learning", level: 60, color: "from-green-400 to-emerald-600" },
+    { name: "Machine Learning", level: 50, color: "from-green-400 to-emerald-600" },
     { name: "Video & Photo Editing", level: 80, color: "from-indigo-400 to-purple-600" },
     { name: "Microsoft Office", level: 95, color: "from-blue-400 to-cyan-600" },
-    { name: "Quantitative Aptitude", level: 75, color: "from-teal-400 to-cyan-600" },
+    { name: "Quantitative Aptitude", level: 65, color: "from-teal-400 to-cyan-600" },
   ];
 
   // Refs for each bar to trigger animation
@@ -36,7 +36,7 @@ const Skills = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {skills.map((skill, index) => (
-              <div key={skill.name} className="group">
+              <div key={skill.name} className="group hover:shadow-[0_0_24px_4px_rgba(56,189,248,0.4)] transition-all duration-300">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-white font-medium">{skill.name}</span>
                   <span className="text-gray-400 text-sm">{skill.level}%</span>
