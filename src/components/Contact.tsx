@@ -1,6 +1,26 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
+import { motion, Variants } from "framer-motion";
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.5,
+    y: 50,
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      type: "spring",
+      stiffness: 120,
+    },
+  }),
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +29,7 @@ const Contact = () => {
     message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,7 +89,16 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <motion.section
+      id="contact"
+      key={animationKey}
+      className="py-20"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setAnimationKey((k) => k + 1)}
+    >
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
           Let's Connect
@@ -86,60 +116,52 @@ const Contact = () => {
               You can also connect with me through these platforms:
             </p>
 
-            {/* Social Media Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* GitHub */}
-              <a
-                href="https://github.com/Saithanushkumar143"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-black hover:to-white hover:text-black shadow-md hover:shadow-white/20"
-              >
-                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl">
-                  💻
-                </div>
-                <p className="text-white font-medium">GitHub</p>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/sai-thanush-kumar-yegoti-58220b299/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-[#0072b1] hover:to-white hover:text-black shadow-md hover:shadow-blue-400/30"
-              >
-                <div className="w-12 h-12 bg-[#0072b1] rounded-full flex items-center justify-center text-white text-xl">
-                  🔗
-                </div>
-                <p className="text-white font-medium">LinkedIn</p>
-              </a>
-
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/saithanushkumar_143" // Replace this
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 hover:text-white shadow-md hover:shadow-pink-400/30"
-              >
-                <div className="w-12 h-12 bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white text-xl">
-                  📸
-                </div>
-                <p className="text-white font-medium">Instagram</p>
-              </a>
-
-              {/* Email */}
-              <a
-                href="mailto:yegotisaithanushkumar143@gmail.com"
-                className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-gradient-to-r hover:from-rose-500 hover:to-orange-400 hover:text-white shadow-md hover:shadow-red-400/30"
-              >
-                <div className="w-12 h-12 bg-red-500/70 rounded-full flex items-center justify-center text-white text-xl">
-                  📧
-                </div>
-                <p className="text-white font-medium">Email</p>
-              </a>
+              {[
+                {
+                  href: "https://github.com/Saithanushkumar143",
+                  label: "GitHub",
+                  icon: "💻",
+                  bg: "bg-black",
+                },
+                {
+                  href: "https://www.linkedin.com/in/sai-thanush-kumar-yegoti-58220b299/",
+                  label: "LinkedIn",
+                  icon: "🔗",
+                  bg: "bg-[#0072b1]",
+                },
+                {
+                  href: "https://www.instagram.com/saithanushkumar_143",
+                  label: "Instagram",
+                  icon: "📸",
+                  bg: "bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500",
+                },
+                {
+                  href: "mailto:yegotisaithanushkumar143@gmail.com",
+                  label: "Email",
+                  icon: "📧",
+                  bg: "bg-red-500/70",
+                },
+              ].map((item, index) => (
+                <motion.a
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  variants={cardVariants}
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 bg-slate-800 hover:bg-white/10 hover:text-white shadow-md"
+                >
+                  <div className={`w-12 h-12 ${item.bg} rounded-full flex items-center justify-center text-white text-xl`}>
+                    {item.icon}
+                  </div>
+                  <p className="text-white font-medium">{item.label}</p>
+                </motion.a>
+              ))}
             </div>
 
-            {/* Location */}
             <div className="flex items-center space-x-4 pt-6">
               <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
                 <span className="text-blue-400">📍</span>
@@ -216,7 +238,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="mt-20 pt-8 border-t border-slate-700 text-center">
           <p className="text-gray-400 text-sm">
             © 2024 Yegoti Sai Thanush Kumar. Built with passion and code.
@@ -226,7 +247,7 @@ const Contact = () => {
           </p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

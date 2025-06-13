@@ -1,67 +1,97 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 const Skills = () => {
   const skills = [
-    { name: "Python", level: 75, color: "from-yellow-400 to-yellow-600" },
-    { name: "C Programming", level: 60, color: "from-blue-400 to-blue-600" },
-    { name: "HTML & CSS", level: 85, color: "from-orange-400 to-red-600" },
-    { name: "Prompt Engineering", level: 90, color: "from-purple-400 to-pink-600" },
-    { name: "Machine Learning", level: 50, color: "from-green-400 to-emerald-600" },
-    { name: "Video & Photo Editing", level: 80, color: "from-indigo-400 to-purple-600" },
-    { name: "Microsoft Office", level: 95, color: "from-blue-400 to-cyan-600" },
-    { name: "Quantitative Aptitude", level: 65, color: "from-teal-400 to-cyan-600" },
+    {
+      name: "Python",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    },
+    {
+      name: "C Programming",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+    },
+    {
+      name: "HTML & CSS",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    },
+    {
+      name: "Prompt Engineering",
+      logo: "https://img.icons8.com/fluency/48/ai.png",
+    },
+    {
+      name: "Machine Learning",
+      logo: "https://img.icons8.com/ios-filled/50/artificial-intelligence.png",
+    },
+    {
+      name: "Canva",
+      logo: "https://img.icons8.com/color/48/canva.png",
+    },
+    {
+      name: "Microsoft Office",
+      logo: "https://img.icons8.com/color/48/microsoft-office-2019.png",
+    },
+    {
+      name: "Quantitative Aptitude",
+      logo: "https://img.icons8.com/ios/50/sigma.png",
+    },
   ];
 
-  // Refs for each bar to trigger animation
-  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    barRefs.current.forEach((bar, idx) => {
-      if (bar) {
-        // Trigger width transition after mount
-        setTimeout(() => {
-          bar.style.width = `${skills[idx].level}%`;
-        }, idx * 100); // staggered animation
-      }
-    });
-  }, []);
-
   return (
-    <section id="skills" className="py-20">
+    <motion.section
+      id="skills"
+      className="py-20"
+      initial="hidden"
+      whileInView="visible"
+      transition={{ staggerChildren: 0.2 }}
+    >
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <motion.h2
+          className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           Skills & Technologies
-        </h2>
+        </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {skills.map((skill, index) => (
-              <div key={skill.name} className="group hover:shadow-[0_0_24px_4px_rgba(56,189,248,0.4)] transition-all duration-300">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-white font-medium">{skill.name}</span>
-                  <span className="text-gray-400 text-sm">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
-                  <div
-                    ref={el => (barRefs.current[index] = el)}
-                    className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out transform group-hover:scale-105`}
-                    style={{
-                      width: 0, // Start at 0, animate to skill.level%
-                    }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-gray-400 italic">
-              "Technology is not just about code; it's about creating solutions that bridge the gap between imagination and reality."
-            </p>
-          </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 max-w-4xl mx-auto">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              className="flex flex-col items-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <motion.img
+                src={skill.logo}
+                alt={skill.name}
+                className="w-16 h-16 object-contain mb-2"
+                whileHover={{
+                  rotate: [0, 5, -5, 3, 0],
+                  boxShadow: "0px 0px 16px rgba(0, 255, 255, 0.4)",
+                  transition: { duration: 0.5 },
+                }}
+              />
+              <span className="text-white text-sm text-center">{skill.name}</span>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          <p className="text-gray-400 italic">
+            "Technology is not just about code; it's about creating solutions that bridge the gap between imagination and reality."
+          </p>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
