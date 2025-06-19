@@ -15,8 +15,8 @@ const Projects = () => {
       description:
         "A Mahabharata-inspired AI system offering ancient wisdom to guide modern decisions, using contextual storytelling, shlokas, and powerful character-driven insights to encourage clarity and purpose.",
       tech: ["React", "Flask", "MongoDB", "AI"],
-      link: "#",
-      status: "In Development",
+      link: "https://project-mahabharat.onrender.com",
+      status: "Live",
     },
     {
       title: "Jarvis AI",
