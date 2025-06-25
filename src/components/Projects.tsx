@@ -40,8 +40,8 @@ const Projects = () => {
       description:
         "An AI-powered travel assistant that creates personalized trip plans based on budget, preferences, and real-time data for transport, food, and stays.",
       tech: ["AI", "Travel", "Real-time Data", "Personalization"],
-      link: "#",
-      status: "Yet to Begin",
+      link: "https://www.linkedin.com/posts/sai-thanush-kumar-yegoti-58220b299_plango-smarttripplanner-project3-activity-7343697135990710272-sOh6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEgctXIB6j7eWqlL1iN2N3ySmNVAxzjhszQ",
+      status: "Work in Progress",
     },
   ];
 
