@@ -35,6 +35,7 @@ const Skills = () => {
       name: "Quantitative Aptitude",
       logo: "https://img.icons8.com/ios/50/sigma.png",
     },
+    
   ];
 
   return (

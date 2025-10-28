@@ -43,6 +43,14 @@ const Projects = () => {
       link: "https://www.linkedin.com/posts/sai-thanush-kumar-yegoti-58220b299_plango-smarttripplanner-project3-activity-7343697135990710272-sOh6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEgctXIB6j7eWqlL1iN2N3ySmNVAxzjhszQ",
       status: "Work in Progress",
     },
+    {
+      title: "Notes Vault",
+      description:
+        "A centralized academic notes sharing platform designed specifically for IoT engineering students—combining secure authentication, cloud storage integration, and intelligent organization to transform how students discover, share, and manage their study materials across semesters and regulations.",
+      tech: ["AI", "Notes", "Academi", "Personalization"],
+      link: "https://notes-vault-nt7o.onrender.com",
+      status: "Live",
+    },
   ];
 
   const splitVariants: Variants = {

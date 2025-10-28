@@ -18,6 +18,7 @@ const Leadership = () => {
       period: "2024 – Present",
       icon: "🤖",
     },
+    
   ];
 
   const leftOrbit: Variants = {
