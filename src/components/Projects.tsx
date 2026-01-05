@@ -44,11 +44,11 @@ const Projects = () => {
       status: "Work in Progress",
     },
     {
-      title: "Notes Vault",
+      title: "NoteNest",
       description:
         "A centralized academic notes sharing platform designed specifically for IoT engineering students—combining secure authentication, cloud storage integration, and intelligent organization to transform how students discover, share, and manage their study materials across semesters and regulations.",
       tech: ["AI", "Notes", "Academi", "Personalization"],
-      link: "https://notes-vault-nt7o.onrender.com",
+      link: "https://iotnotenest.vercel.app",
       status: "Live",
     },
   ];
